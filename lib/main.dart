@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:personal_expenses_app/transaction.dart';
+
+import 'package:personal_expenses_app/widgets/user_transactions.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
       home: MyHomePage(),
     );
@@ -27,12 +28,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-        amount: 99.99, date: DateTime.now(), id: "sasa1", title: "new shoes"),
-    Transaction(
-        amount: 44.99, date: DateTime.now(), id: "sasa2", title: "Chips"),
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,39 +44,33 @@ class MyHomePage extends StatelessWidget {
         // the App.build method, and use it to set our appbar title.
         title: Text("widget.title"),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Card(
-              child: Text("Card 1"),
+      body: SingleChildScrollView(
+              child: Column(
+              // Column is also layout widget. It takes a list of children and
+              // arranges them vertically. By default, it sizes itself to fit its
+              // children horizontally, and tries to be as tall as its parent.
+              //
+              // Invoke "debug painting" (press "p" in the console, choose the
+              // "Toggle Debug Paint" action from the Flutter Inspector in Android
+              // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+              // to see the wireframe for each widget.
+              //
+              // Column has various properties to control how it sizes itself and
+              // how it positions its children. Here we use mainAxisAlignment to
+              // center the children vertically; the main axis here is the vertical
+              // axis because Columns are vertical (the cross axis would be
+              // horizontal).
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Card(
+                  child: Text("Card 1"),
+                ),
+                UserTransactions(),
+          
+              ],
             ),
-            Column(
-              children: transactions.map((tx) {
-
-return Card(child:Text(tx.title) ,);
-
-              }).toList(),
-            )
-          ],
-        ),
       ),
+      
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
